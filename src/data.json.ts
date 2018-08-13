@@ -1,0 +1,78 @@
+export default [{
+  "id": 1,
+  "name": "sas",
+  "add": "hyd",
+  "age": 23,
+  "status": true,
+  "country": "IND"
+}, {
+  "id": 2,
+  "name": "bob",
+  "add": "bng",
+  "age": 25,
+  "status": false,
+  "country": "USA"
+}, {
+  "id": 3,
+  "name": "kab",
+  "add": "mum",
+  "age": 27,
+  "status": true,
+  "country": "IND"
+}, {
+  "id": 4,
+  "name": "saabre",
+  "add": "del",
+  "age": 30,
+  "status": true,
+  "country": "IND"
+}, {
+  "id": 5,
+  "name": "abar",
+  "add": "del",
+  "age": 35,
+  "status": false,
+  "country": "AUS"
+}, {
+  "id": 6,
+  "name": "abb",
+  "add": "bng",
+  "age": 37,
+  "status": true,
+  "country": "USA"
+}, {
+  "id": 7,
+  "name": "tash",
+  "add": "del",
+  "age": 40,
+  "status": false,
+  "country": "AUS"
+}, {
+  "id": 8,
+  "name": "rock",
+  "add": "hyd",
+  "age": 30,
+  "status": false,
+  "country": "IND"
+}, {
+  "id": 9,
+  "name": "roccie",
+  "add": "bng",
+  "age": 54,
+  "status": false,
+  "country": "IND"
+}, {
+  "id": 10,
+  "name": "bok",
+  "add": "del",
+  "age": 34,
+  "status": true,
+  "country": "IND"
+}, {
+  "id": 11,
+  "name": "zune",
+  "add": "bng",
+  "age": 30,
+  "status": true,
+  "country": "USA"
+}]
