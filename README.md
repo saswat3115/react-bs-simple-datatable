@@ -12,6 +12,7 @@ A react component data-table librabry.
   - [paging](#paging)
   - [filter](#filter)
   - [edit](#edit)
+  - [Handling edit/delete record](#handle-edit-delete-data)
 
 
 ## How to Use
@@ -19,13 +20,13 @@ A react component data-table librabry.
 ```
 <DataTable
     headers={headers}
-    body={body}
+    body={bodyAsJSONArray}
     isPaging
     pageSize={3}
     noOfIndexToBeShown={3}  
     enableDelete
     enableEdit    
-    onRowUpdate={update}
+    onRowUpdate={methodToHandleEditingRecord}
     enableFilter
   />
 ```
@@ -33,14 +34,14 @@ A react component data-table librabry.
 ## Datatable Header Configuration
 
 - Specify header type as __*IHeaderType[]*__. 
-- __*title*__ is what to show in data table header
-- __*prop*__ is property name of data source
-- __*enableSort*__ to enabe sorting to specific column
-- __*noEdit*__ to restrict editing the specific column
-- __*type*__ is data type of property
-- __*optionsOnEdit*__ provides multiple option while on edit mode (provide only when the field is a dropdown)
+- __`title`__ is what to show in data table header
+- __`prop`__ is property name of data source
+- __`enableSort`__ to enabe sorting to specific column
+- __`noEdit`__ to restrict editing the specific column
+- __`type`__ is data type of property
+- __`optionsOnEdit`__ provides multiple option while on edit mode (provide only when the field is a dropdown)
 
-Following code is a header sample
+Following code is a header sample. Pass this headers object to headers props of DataTable component
 ```
 var headers: IHeaderType[] = [
   { title: "Id", prop: "id", enableSort: true, noEdit: true },
@@ -80,5 +81,27 @@ enum PropDataType {
 
 `enableSort: true` in header configuration to enable sorting 
 
+## Paging
+- Provide `isPaging` to enable pagination
+- Provide `pageSize={noOfRecordsPerPage}` to show specific number of records per page
+- Provide `noOfIndexToBeShown={3}` to show number of page indexes in paging div
+
+`<DataTable isPaging pageSize={3} noOfIndexToBeShown={3} />`
+![paging snapshot](/paging-snapshot.png)
+
+## Filter
+Provide `eneableFilter` props to enable filter operation in datatable
+__NOTE:__ *By default filter is wild card search from every column*
+
+`<DataTable enableFilter />`
+
+![fliter snapshot](/filter-snapshot.png)
+
+## Edit
+Provide `enableEdit` props to enable edit button in data table
+`<DataTable enableEdit />`
+
+![edit snapshot](/edit-snapshot.png)
+![edit snapshot on click](/edit-snapshot-on-click.png)
 
 
