@@ -87,6 +87,7 @@ enum PropDataType {
 - Provide `noOfIndexToBeShown={3}` to show number of page indexes in paging div
 
 `<DataTable isPaging pageSize={3} noOfIndexToBeShown={3} />`
+
 ![paging snapshot](/paging-snapshot.png)
 
 ## Filter
