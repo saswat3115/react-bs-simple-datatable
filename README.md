@@ -2,6 +2,8 @@
 
 A react component data-table librabry.
 
+![data-table](/datatable.png)
+
 ## Table of Contents
 
 - [How to Use](#how-to-use)
