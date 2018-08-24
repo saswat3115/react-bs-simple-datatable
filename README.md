@@ -17,7 +17,7 @@ A react component data-table librabry.
 
 ## How to Use
 
-```
+```javascript
 <DataTable
     headers={headers}
     body={bodyAsJSONArray}
@@ -42,7 +42,7 @@ A react component data-table librabry.
 - __`optionsOnEdit`__ provides multiple option while on edit mode (provide only when the field is a dropdown)
 
 Following code is a header sample. Pass this headers object to headers props of DataTable component
-```
+```javascript
 var headers: IHeaderType[] = [
   { title: "Id", prop: "id", enableSort: true, noEdit: true },
   { title: "Name", prop: "name", enableSort: true },
@@ -58,7 +58,7 @@ var sampleOptions = [ "USA", "IND", "AUS"];
 ## Header Types
 
 Header type as follows
-```
+```javascript
 interface IHeaderType {
     title: string;
     prop: string;
@@ -70,7 +70,7 @@ interface IHeaderType {
 ```
 
 Property types as follows
-```
+```javascript
 enum PropDataType {
     TEXT, MULTI_OPTION, CHECKBOX
 }
@@ -104,4 +104,20 @@ Provide `enableEdit` props to enable edit button in data table
 ![edit snapshot](/edit-snapshot.png)
 ![edit snapshot on click](/edit-snapshot-on-click.png)
 
+## Handle Edit Delete Data
 
+Add a event handler to handle modified record. 
+__NOTE:__ DataTable component temporarily updates the record in memory and emits the modifed record for you.
+Pass your method to handle that object as shown below. This will work in both update and delete operation
+
+```javascript
+<DataTable
+    onRowUpdate={methodToHandleEditingRecord}
+  />
+
+function methodToHandleEditingRecord(record) {
+    // record object holds the selected edited record from data source
+    // update to database
+}
+  
+```
