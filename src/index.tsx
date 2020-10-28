@@ -27,6 +27,10 @@ const update = (updatedRow: any, action: string) => {
   // TODO: Do necessary action on this
 };
 
+const selectRow = (item: any, index: number, selected: boolean) => {
+  window.console.log(item, index, selected);
+}
+
 ReactDOM.render(
   <DataTable
     headers={headers}
@@ -39,6 +43,8 @@ ReactDOM.render(
     enableInsert
     onRowUpdate={update}
     enableFilter
+    rowSelectable
+    onRowSelect={selectRow}
   />,
   document.getElementById("root") as HTMLElement
 );

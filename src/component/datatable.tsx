@@ -157,6 +157,12 @@ export default class DataTable extends React.Component<
     });
   };
 
+  public onRowSelect = (item: any, index: number, e: any): void => {
+    if (this.props.onRowSelect) {
+      this.props.onRowSelect(item, index, e.target.checked);
+    }
+  }
+
   public render() {
     const actionEnable = this.props.enableDelete || this.props.enableEdit;
     const headerLenght = actionEnable
@@ -164,23 +170,26 @@ export default class DataTable extends React.Component<
       : this.state.headers.length;
     return (
       <div id="dtTable">
-              <div className="input-group md-form form-sm form-2 pl-0 div-search">
-                <input 
-                  className="form-control my-0 mt-sm py-1 red-border"
-                  type="text" 
-                  placeholder="Search"
-                  aria-label="Search"
-                  hidden={!this.props.enableFilter}
-                        onChange={this.onFilterTextChange} />
-                <div className="input-group-append">
-                    <span className="input-group-text red lighten-3" id="basic-text1">
-                      <i className="fa fa-search text-grey" aria-hidden="true" />                      
-                    </span>
-                </div>
-            </div>       
+        <div className="input-group md-form form-sm form-2 pl-0 div-search">
+            <input 
+              className="form-control my-0 mt-sm py-1 red-border"
+              type="text" 
+              placeholder="Search"
+              aria-label="Search"
+              hidden={!this.props.enableFilter}
+                    onChange={this.onFilterTextChange} />
+            <div className="input-group-append">
+                <span className="input-group-text red lighten-3" id="basic-text1">
+                  <i className="fa fa-search text-grey" aria-hidden="true" />                      
+                </span>
+            </div>
+        </div>       
         <table className="table table-hover">
           <thead className="thead-dark table-bordered">
             <tr>
+              {this.props.rowSelectable && 
+               <th scope="col" />
+              }
               {this.state.headers.map((item: any, index: number) => {
                 return (
                   <th key={index} scope="col">
@@ -210,6 +219,15 @@ export default class DataTable extends React.Component<
               this.state.body.map((item: any, index: number) => {
                 return (
                   <tr className="tr-item-list" key={index}>
+                    {this.props.rowSelectable &&
+                     <td className="selectable">
+                      <input
+                        type="checkbox"
+                        className="form-control"
+                        onChange={this.onRowSelect.bind(this, item, index)}
+                      />
+                     </td>
+                    }
                     {this.state.headers.map((col: any, colIndex: number) => {
                       return (
                         <td key={index + "" + colIndex}>
@@ -243,6 +261,17 @@ export default class DataTable extends React.Component<
                           </button>
                         ) : null}
                         &nbsp;
+                        {this.props.enableEdit
+                         && this.state.isCellClicked
+                         && this.state.rowIndex === index
+                         && (
+                          <button
+                            className="btn btn-warning btn-sm"
+                            onClick={this.onEditClick.bind(this, index)}
+                          >
+                            cancel
+                        </button>
+                        )}
                         {this.props.enableDelete ? (
                           <button
                             className="btn btn-danger btn-sm"
@@ -265,10 +294,10 @@ export default class DataTable extends React.Component<
               </tr>
             )}
           </tbody>
-          <tfoot>
-            <tr>
-              <td colSpan={headerLenght - (this.props.enableInsert? 1: 0)}>
-                {this.props.isPaging ? (
+        </table>
+        <div className="row">
+              <div className="col">
+              {this.props.isPaging ? (
                   <Pagination
                     pageCount={this.state.pageCount}
                     currentPage={this.state.currentPage}
@@ -276,16 +305,14 @@ export default class DataTable extends React.Component<
                     onPageClick={this.onPageIndexClick}
                   />
                 ) : null}
-              </td>
-              {this.props.enableInsert? 
-              <td>
-                <button className="btn btn-primary btn-sm">
-                  Add New 
-                </button>
-              </td>: null}
-            </tr>
-          </tfoot>
-        </table>
+              </div>
+              <div className="col">
+                {this.props.enableInsert? 
+                  <button className="btn btn-primary btn-sm float-right">
+                    Add New 
+                  </button>: null}
+              </div>
+          </div>
         <PopupModal title="Confirm Delete" id="deleteModal">
           Are you sure want to delete ? &nbsp; &nbsp;
           <button

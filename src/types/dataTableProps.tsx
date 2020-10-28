@@ -10,6 +10,8 @@ export default interface IdataTablePropType {
       enableEdit?: boolean;
       enableInsert?: boolean;
       enableFilter?: boolean;
-      onRowUpdate?(row: any, action: string): void;
+      rowSelectable?: boolean;
+      onRowUpdate?: (row: any, action: string) => void;
+      onRowSelect?: (row: any, index: number, selected: boolean) => void;
   }
   
