@@ -1,7 +1,7 @@
 {
-  "name": "data-table",
+  "name": "react-bs-simple-datatable",
   "version": "1.0.1",
-  "private": true,
+  "author": "saswat_mohanty",
   "dependencies": {
     "bootstrap": "^4.1.3",
     "font-awesome": "^4.7.0",
