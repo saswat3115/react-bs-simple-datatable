@@ -1,6 +1,6 @@
 ## React-bs-simple-datatable
 
-A react component data-table librabry.
+A react component data-table librabry. Latest version - v1.0.3
 
 ![data-table](/datatable.png)
 
