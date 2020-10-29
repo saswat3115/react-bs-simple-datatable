@@ -158,8 +158,19 @@ export default class DataTable extends React.Component<
   };
 
   public onRowSelect = (item: any, index: number, e: any): void => {
+    const { checked } = e.target;
+    if (checked) {
+      item._selected = checked;
+    } else {
+      delete item._selected;
+    }
+
+    this.setState({
+      body: this.state.body,
+    });
+    
     if (this.props.onRowSelect) {
-      this.props.onRowSelect(item, index, e.target.checked);
+      this.props.onRowSelect(item, index, checked);
     }
   }
 
@@ -224,6 +235,7 @@ export default class DataTable extends React.Component<
                       <input
                         type="checkbox"
                         className="form-control"
+                        checked={!!item._selected}
                         onChange={this.onRowSelect.bind(this, item, index)}
                       />
                      </td>
